@@ -14,8 +14,29 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        brand: "#FD4F00",
-      }
+        bbDark: {
+          dark: "#010101",
+          light: "#B28282",
+          DEFAULT: "3C3B3B"
+        },
+        bbPurple: {
+          dark: "#631A61",
+          light: "#E88FE5",
+          DEFAULT: "#A8234A5"
+        },
+        bbLavender: {
+          dark: "#8C52FF",
+          light: "#BC9AFF",
+          DEFAULT: "#9D74EE"
+        },
+      },
+      fontFamily: {
+        brand: ['WorkSans', 'sans-serif'],
+      },
+      fontWeight: {
+        regular: 'normal',
+        bold: 'bold',
+      },
     },
   },
   plugins: [
