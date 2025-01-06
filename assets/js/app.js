@@ -24,6 +24,19 @@ import topbar from "../vendor/topbar"
 import hljs from "highlight.js";
 
 const csrfToken = document.querySelector("meta[name='csrf-token']").getAttribute("content");
+
+function updateLineNumbers(value) {
+  const lineNumberText = document.querySelector("#line-numbers")
+
+  if (!lineNumberText) return;
+
+  const lines = value.split("\n");
+
+  const numbers = lines.map((_, index) => index + 1).join("\n") + "\n"
+
+  lineNumberText.value = numbers
+};
+
 const Hooks = {};
 
 Hooks.UpdateLineNumbers = {
@@ -31,7 +44,7 @@ Hooks.UpdateLineNumbers = {
     const lineNumberText = document.querySelector("#line-numbers");
 
     this.el.addEventListener("input", () => {
-      this.updateLineNumbers();
+      updateLineNumbers(this.el.value);
     });
 
     this.el.addEventListener("scroll", () => {
@@ -55,20 +68,8 @@ Hooks.UpdateLineNumbers = {
       lineNumberText.value = "1\n";
     });
 
-    this.updateLineNumbers();
+    updateLineNumbers(this.el.value);
   },
-
-  updateLineNumbers() {
-    const lineNumberText = document.querySelector("#line-numbers");
-
-    if (!lineNumberText) return;
-
-    const lines = this.el.value.split("\n");
-
-    const lineNumbers = lines.map((_, index) => index + 1).join("\n") + "\n";
-
-    lineNumberText.value = lineNumbers;
-  }
 };
 
 Hooks.Highlight = {
