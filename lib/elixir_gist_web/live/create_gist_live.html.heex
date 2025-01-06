@@ -4,7 +4,7 @@
   </h1>
 </div>
 
-<.form for={@form}>
+<.form for={@form} phx-submit="create">
   <div class="justify-center px-28 w-full space-y-4 mb-10">
     <.input field={@form[:description]} placeholder="Gist description..." autocomplete="off" />
     <div>
@@ -31,7 +31,7 @@
       />
     </div>
     <div class="flex justify-end">
-     <.button class="create-btn">Create Gist</.button>
+      <.button class="create-btn">Create gist</.button>
     </div>
   </div>
 </.form>
