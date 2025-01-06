@@ -70,7 +70,7 @@ form input[type="text"]:focus {
 }
 
 .text-area {
-  @apply bg-bbDark-dark font-brand font-regular text-white text-xs border border-white max h-[300px] resize-none;
+  @apply bg-bbDark-dark font-brand font-regular text-white text-xs border border-white h-[300px] resize-none;
   border-top: none;
   border-left: none;
 }
