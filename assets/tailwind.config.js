@@ -29,6 +29,7 @@ module.exports = {
           light: "#BC9AFF",
           DEFAULT: "#9D74EE"
         },
+        bbSyntax: "#0E1116",
       },
       fontFamily: {
         brand: ['WorkSans', 'sans-serif'],
