@@ -96,3 +96,19 @@ form input[type="text"]:focus {
 .create-btn:hover {
   @apply hover:bg-bbPurple-dark text-bbDark-light border-bbDark-light ;
 }
+
+.syntax-area {
+  @apply bg-bbSyntax border text-xs border-white h-auto;
+  border-top: none;
+  border-left: none;
+}
+
+.syntax-numbers {
+  @apply border border-white font-brand py-[28px] text-xs text-bbDark-light bg-bbSyntax h-auto w-[54px] text-right overflow-hidden resize-none;
+  border-right: none;
+  border-top: none;
+}
+
+.syntax-numbers:focus {
+  @apply focus:outline-none focus:border-white
+}
