@@ -104,11 +104,11 @@ form input[type="text"]:focus {
 }
 
 .syntax-numbers {
-  @apply border border-white font-brand py-[28px] text-xs text-bbDark-light bg-bbSyntax h-auto w-[54px] text-right overflow-hidden resize-none;
+  @apply border border-white font-brand py-[12px] text-xs text-bbDark-light bg-bbSyntax h-auto w-[54px] text-right overflow-hidden resize-none;
   border-right: none;
   border-top: none;
 }
 
 .syntax-numbers:focus {
-  @apply focus:outline-none focus:border-white
+  @apply focus:outline-none focus:border-white focus:ring-0;
 }

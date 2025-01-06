@@ -79,8 +79,9 @@ Hooks.Highlight = {
       if (name && codeBlock) {
           codeBlock.className = codeBlock.className.replace(/language-\S+/g, "");
           codeBlock.classList.add(`language-${this.getSyntaxType(name)}`);
-          hljs.highlightElement(codeBlock);
-      }
+          trimmed = this.trimCodeBlock(codeBlock)
+          hljs.highlightElement(trimmed);
+          updateLineNumbers(trimmed.textContent)      }
   },
 
   getSyntaxType(name) {
@@ -99,6 +100,16 @@ Hooks.Highlight = {
           default:
               return "elixir";
       }
+  },
+
+  trimCodeBlock(codeBlock) {
+    const lines = codeBlock.textContent.split("\n")
+    if (lines.length > 2) {
+        lines.shift();
+        lines.pop();
+    }
+    codeBlock.textContent = lines.join("\n")
+    return codeBlock
   }
 };
 
