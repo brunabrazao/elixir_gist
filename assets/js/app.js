@@ -22,23 +22,46 @@ import {Socket} from "phoenix"
 import {LiveSocket} from "phoenix_live_view"
 import topbar from "../vendor/topbar"
 
-let csrfToken = document.querySelector("meta[name='csrf-token']").getAttribute("content")
-let liveSocket = new LiveSocket("/live", Socket, {
+const csrfToken = document.querySelector("meta[name='csrf-token']").getAttribute("content");
+const Hooks = {};
+
+Hooks.UpdateLineNumbers = {
+  mounted() {
+    this.el.addEventListener("input", () => {
+      this.updateLineNumbers();
+    });
+    this.updateLineNumbers();
+  },
+
+  updateLineNumbers() {
+    const lineNumberText = document.querySelector("#line-numbers");
+
+    if (!lineNumberText) return;
+
+    const lines = this.el.value.split("\n");
+
+    const lineNumbers = lines.map((_, index) => index + 1).join("\n") + "\n";
+
+    lineNumberText.value = lineNumbers;
+  }
+};
+
+const liveSocket = new LiveSocket("/live", Socket, {
   longPollFallbackMs: 2500,
-  params: {_csrf_token: csrfToken}
-})
+  params: { _csrf_token: csrfToken },
+  hooks: Hooks
+});
 
 // Show progress bar on live navigation and form submits
-topbar.config({barColors: {0: "#29d"}, shadowColor: "rgba(0, 0, 0, .3)"})
-window.addEventListener("phx:page-loading-start", _info => topbar.show(300))
-window.addEventListener("phx:page-loading-stop", _info => topbar.hide())
+topbar.config({ barColors: { 0: "#29d" }, shadowColor: "rgba(0, 0, 0, .3)" });
+window.addEventListener("phx:page-loading-start", () => topbar.show(300));
+window.addEventListener("phx:page-loading-stop", () => topbar.hide());
 
 // connect if there are any LiveViews on the page
-liveSocket.connect()
+liveSocket.connect();
 
 // expose liveSocket on window for web console debug logs and latency simulation:
 // >> liveSocket.enableDebug()
 // >> liveSocket.enableLatencySim(1000)  // enabled for duration of browser session
 // >> liveSocket.disableLatencySim()
-window.liveSocket = liveSocket
-
+window.liveSocket = liveSocket;

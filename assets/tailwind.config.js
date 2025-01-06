@@ -16,7 +16,7 @@ module.exports = {
       colors: {
         bbDark: {
           dark: "#010101",
-          light: "#d4d4d8",
+          light: "#828282",
           DEFAULT: "#3C3B3B"
         },
         bbPurple: {
