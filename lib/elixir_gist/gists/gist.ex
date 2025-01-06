@@ -9,7 +9,7 @@ defmodule ElixirGist.Gists.Gist do
     field :description, :string
     field :markup_text, :string
     belongs_to :user, ElixirGist.Accounts.User
-    has_many :comments, ElixirGist.Gists.Comment
+    has_many :comments, ElixirGist.Comments.Comment
 
     timestamps(type: :utc_datetime)
   end
