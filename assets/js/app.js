@@ -37,6 +37,18 @@ Hooks.UpdateLineNumbers = {
       lineNumberText.scrollTop = this.el.scrollTop;
     })
 
+    this.el.addEventListener("keydown", (event) => {
+      if (event.key === "Tab") {
+        event.preventDefault();
+
+        const { selectionStart, selectionEnd } = this.el;
+
+        this.el.value = this.el.value.substring(0, selectionStart) + " \t" + this.el.value.substring(selectionEnd);
+
+        this.el.selectionStart = this.el.selectionEnd = selectionStart + 2;
+      }
+    });
+
     this.handleEvent("clear-textareas", () => {
       this.el.value = "";
       lineNumberText.value = "1\n";
