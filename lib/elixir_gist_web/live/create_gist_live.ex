@@ -1,6 +1,5 @@
 defmodule ElixirGistWeb.CreateGistLive do
   # this module make this a live view
-  import Phoenix.HTML.Form
   use ElixirGistWeb, :live_view
   alias ElixirGist.{Gists, Gists.Gist}
 
@@ -19,5 +18,14 @@ defmodule ElixirGistWeb.CreateGistLive do
       {:error, %Ecto.Changeset{} = changeset} ->
         {:noreply, assign(socket, form: to_form(changeset))}
     end
+  end
+
+  def handle_event("validate", %{"gist" => params}, socket) do
+    change_set =
+      %Gist{}
+      |> Gists.change_gist(params)
+      |> Map.put(:action, :validate)
+
+    {:noreply, assign(socket, form: to_form(change_set))}
   end
 end
