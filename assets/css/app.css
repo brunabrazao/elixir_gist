@@ -55,3 +55,34 @@
 .menu-item:hover {
   @apply hover:text-bbDark-light;
 }
+
+.bb-gradient {
+  background-image: linear-gradient(to bottom, #631A61, #551653, #340E33, #010101);
+  height: 225px;
+}
+
+form input[type="text"] {
+  @apply bg-bbDark-dark font-brand font-regular text-white text-sm border border-white
+}
+
+form input[type="text"]:focus {
+  @apply focus:outline-none focus:border-bbLavender focus:ring-0
+}
+
+.text-area {
+  @apply bg-bbDark-dark font-brand font-regular text-white text-xs border border-white h-[300px] resize-none;
+  border-top: none;
+  padding-top: 20px
+}
+
+.text-area:focus {
+  @apply focus:outline-none focus:border-white focus:ring-0;
+}
+
+.create-btn {
+  @apply bg-bbPurple border font-brand border-white font-regular text-black text-base;
+}
+
+.create-btn:hover {
+  @apply hover:bg-bbPurple-dark text-bbDark-light border-bbDark-light ;
+}

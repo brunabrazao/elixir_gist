@@ -22,7 +22,7 @@ module.exports = {
         bbPurple: {
           dark: "#631A61",
           light: "#E88FE5",
-          DEFAULT: "#A8234A5"
+          DEFAULT: "#A834A5"
         },
         bbLavender: {
           dark: "#8C52FF",

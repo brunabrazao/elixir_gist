@@ -1,0 +1,37 @@
+<div class="flex items-center justify-center bb-gradient">
+  <h1 class="text-white font-brand font-bold text-3xl">
+    Instantly share Elixir code, notes, and snippets.
+  </h1>
+</div>
+
+<.form for={@form}>
+  <div class="justify-center px-28 w-full space-y-4 mb-10">
+    <.input field={@form[:description]} placeholder="Gist description..." autocomplete="off" />
+    <div>
+      <div class="flex p-2 items-center bg-bbDark rounded-t-md border">
+        <div class="w-[300px] mb-2">
+          <.input
+            field={@form[:name]}
+            placeholder="Filename including extension..."
+            autocomplete="off"
+          />
+        </div>
+      </div>
+
+      <%!-- Nothing seems to be working to pick up the css so adding html --%>
+
+      <textarea
+        id="gist_markup_text"
+        name="gist[markup_text]"
+        class="text-area w-full rounded-b-md"
+        placeholder="Insert code..."
+        spellcheck="false"
+        autocomplete="off"
+        value=""
+      />
+    </div>
+    <div class="flex justify-end">
+     <.button class="create-btn">Create Gist</.button>
+    </div>
+  </div>
+</.form>
