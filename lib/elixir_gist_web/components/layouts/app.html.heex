@@ -99,7 +99,10 @@
     <div class="border-t-[1px] border-white w-full"></div>
     <div class="flex items-center space-x-2 py-6">
       <img src="/images/em-logo.svg" alt="Logo" class="h-8 w-8" />
-      <p>© 2024 ElixirGist. Learning Elixir and Phoenix on the go</p>
+      <p>
+        © <span id="current-year" phx-hook="CurrentYear"></span>
+        ElixirGist. Learning Elixir and Phoenix on the go
+      </p>
       <div class="text-bbLavender-dark px-4 space-x-2">
         <a href={~p"/"}>Terms</a>
         <a href={~p"/"}>Privacy</a>

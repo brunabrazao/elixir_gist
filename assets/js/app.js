@@ -101,6 +101,12 @@ Hooks.Highlight = {
   }
 };
 
+Hooks.CurrentYear = {
+  mounted() {
+    this.el.textContent = new Date().getFullYear();
+  }
+};
+
 const liveSocket = new LiveSocket("/live", Socket, {
   longPollFallbackMs: 2500,
   params: { _csrf_token: csrfToken },
