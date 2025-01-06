@@ -21,7 +21,11 @@ defmodule ElixirGist.GistsTest do
     end
 
     test "create_gist/1 with valid data creates a gist" do
-      valid_attrs = %{name: "some name", description: "some description", markup_text: "some markup_text"}
+      valid_attrs = %{
+        name: "some name",
+        description: "some description",
+        markup_text: "some markup_text"
+      }
 
       assert {:ok, %Gist{} = gist} = Gists.create_gist(valid_attrs)
       assert gist.name == "some name"
@@ -35,7 +39,12 @@ defmodule ElixirGist.GistsTest do
 
     test "update_gist/2 with valid data updates the gist" do
       gist = gist_fixture()
-      update_attrs = %{name: "some updated name", description: "some updated description", markup_text: "some updated markup_text"}
+
+      update_attrs = %{
+        name: "some updated name",
+        description: "some updated description",
+        markup_text: "some updated markup_text"
+      }
 
       assert {:ok, %Gist{} = gist} = Gists.update_gist(gist, update_attrs)
       assert gist.name == "some updated name"

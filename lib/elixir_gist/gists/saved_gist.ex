@@ -5,7 +5,6 @@ defmodule ElixirGist.Gists.SavedGist do
   @primary_key {:id, :binary_id, autogenerate: true}
   @foreign_key_type :binary_id
   schema "saved_gists" do
-
     belongs_to :user, ElixirGist.Accounts.User
     belongs_to :gist, ElixirGist.Gists.Gist
 
