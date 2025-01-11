@@ -119,6 +119,25 @@ Hooks.CurrentYear = {
   }
 };
 
+Hooks.CopyToClipboard = {
+  mounted() {
+    this.el.addEventListener("click", e => {
+      const textToCopy = this.el.getAttribute("data-clipboard-gist")
+
+      if(textToCopy) {
+        navigator.clipboard.writeText(textToCopy).then(() => {
+          this.el.textContent = "Copied!"
+          setTimeout(() => {
+            // reset to the initial state where it renders the copy icon
+            //         <img src="/images/copy.svg" alt="Copy Button" />
+            this.el.innerHTML = `<img src="/images/copy.svg" alt="Copy Button" />`
+          }, 1000)
+        });
+      }
+    });
+  }
+};
+
 const liveSocket = new LiveSocket("/live", Socket, {
   longPollFallbackMs: 2500,
   params: { _csrf_token: csrfToken },
