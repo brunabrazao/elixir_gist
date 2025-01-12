@@ -4,46 +4,4 @@
   </h1>
 </div>
 
-<.form for={@form} phx-submit="create" phx-change="validate">
-  <div class="justify-center px-28 w-full space-y-4 mb-10">
-    <.input
-      field={@form[:description]}
-      placeholder="Gist description..."
-      autocomplete="off"
-      phx-debounce="blur"
-    />
-    <div>
-      <div class="flex p-2 items-center bg-bbDark rounded-t-md border">
-        <div class="w-[300px] mb-2">
-          <.input
-            field={@form[:name]}
-            placeholder="Filename including extension..."
-            autocomplete="off"
-            phx-debounce="blur"
-          />
-        </div>
-      </div>
-
-      <div class="flex w-full" phx-update="ignore" id="gist-wrapper">
-        <textarea id="line-numbers" class="line-numbers" readonly>
-          <%= "1\n" %>
-        </textarea>
-        <%!-- Nothing seems to be working to pick up the css so adding html --%>
-        <textarea
-          id="gist_markup_text"
-          phx-hook="UpdateLineNumbers"
-          name="gist[markup_text]"
-          class="text-area w-full rounded-br-md"
-          placeholder="Insert code..."
-          spellcheck="false"
-          autocomplete="off"
-          phx-debounce="blur"
-          value={@form.data.markup_text}
-        />
-      </div>
-    </div>
-    <div class="flex justify-end">
-      <.button class="create-btn" phx-disable-with="Creating...">Create gist</.button>
-    </div>
-  </div>
-</.form>
+<.live_component module={GistFormComponent} id={:new} current_user={@current_user} />
