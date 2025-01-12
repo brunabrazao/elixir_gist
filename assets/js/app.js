@@ -25,8 +25,8 @@ import hljs from "highlight.js";
 
 const csrfToken = document.querySelector("meta[name='csrf-token']").getAttribute("content");
 
-function updateLineNumbers(value) {
-  const lineNumberText = document.querySelector("#line-numbers")
+function updateLineNumbers(value, elementId="#line-numbers") {
+  const lineNumberText = document.querySelector(elementId)
 
   if (!lineNumberText) return;
 
@@ -81,7 +81,8 @@ Hooks.Highlight = {
           codeBlock.classList.add(`language-${this.getSyntaxType(name)}`);
           trimmed = this.trimCodeBlock(codeBlock)
           hljs.highlightElement(trimmed);
-          updateLineNumbers(trimmed.textContent)      }
+          updateLineNumbers(trimmed.textContent, "#syntax-numbers")
+        }
   },
 
   getSyntaxType(name) {
@@ -135,6 +136,20 @@ Hooks.CopyToClipboard = {
         });
       }
     });
+  }
+};
+
+Hooks.ToggleEdit = {
+  mounted() {
+    this.el.addEventListener("click", e => {
+      let edit = document.getElementById("edit-section");
+      let syntax = document.getElementById("syntax-section");
+
+      if (edit && syntax) {
+        edit.style.display = "block";
+        syntax.style.display = "none";
+      }
+    })
   }
 };
 

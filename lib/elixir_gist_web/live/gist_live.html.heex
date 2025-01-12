@@ -29,8 +29,16 @@
     </div>
   </div>
 </div>
+<div id="edit-section" style="display:none;">
+  <.live_component
+    module={GistFormComponent}
+    id={@gist.id}
+    current_user={@current_user}
+    form={to_form(Gists.change_gist(@gist))}
+  />
+</div>
 
-<div class="justify-center px-28 w-full mb-10">
+<div class="justify-center px-28 w-full mb-10" style="display:block" id="syntax-section">
   <div class="flex p-2 items-center justify-between bg-bbDark rounded-t-md border">
     <div class="w-[300px] pl-2 font-brand font-bold text-base text-bbLavender-dark">
       {@gist.name}
@@ -45,7 +53,7 @@
         >
           <img src="/images/delete.svg" alt="Delete Button" />
         </button>
-        <button class="px-1 interactive-img-btn" type="button" phx-click={}>
+        <button id="edit-btn" class="px-1 interactive-img-btn" type="button" phx-hook="ToggleEdit">
           <img src="/images/edit.svg" alt="Edit Button" />
         </button>
       <% end %>
@@ -61,16 +69,18 @@
     </div>
   </div>
   <div id="gist-wrapper" class="flex w-full">
-    <textarea id="line-numbers" class="syntax-numbers rounded-bl-md" readonly></textarea>
+    <textarea id="syntax-numbers" class="syntax-numbers rounded-bl-md" readonly></textarea>
     <div
       id="highlight"
       class="syntax-area w-full rounded-br-md"
       phx-hook="Highlight"
       data-name={@gist.name}
     >
-      <pre><code class="language-elixir">
-    <%= @gist.markup_text %>
-  </code></pre>
+      <pre>
+        <code class="language-elixir">
+          <%= @gist.markup_text %>
+        </code>
+      </pre>
     </div>
   </div>
 </div>

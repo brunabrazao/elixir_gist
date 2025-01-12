@@ -69,10 +69,16 @@ defmodule ElixirGist.Gists do
       {:error, %Ecto.Changeset{}}
 
   """
-  def update_gist(%Gist{} = gist, attrs) do
-    gist
-    |> Gist.changeset(attrs)
-    |> Repo.update()
+  def update_gist(%User{} = user, attrs) do
+    gist = Repo.get!(Gist, attrs["id"])
+
+    if gist.user_id == user.id do
+      gist
+      |> Gist.changeset(attrs)
+      |> Repo.update()
+    else
+      {:error, :unauthorized}
+    end
   end
 
   @doc """
